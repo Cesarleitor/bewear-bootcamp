@@ -31,7 +31,7 @@ const formSchema = z.object({
   password: z.string("Senha inválida!").min(8, "Senha inválida!"),
 });
 
-type FormValues = z.infer<typeof formSchema>; 
+type FormValues = z.infer<typeof formSchema>;
 
 const SignInForm = () => {
   const router = useRouter();
@@ -51,6 +51,8 @@ const SignInForm = () => {
         onSuccess: () => {
           router.push("/");
         },
+
+        // Erro de email não encontrado
         onError: (ctx) => {
           if (ctx.error.code === "USER_NOT_FOUND") {
             toast.error("E-mail não encontrado.");
@@ -58,6 +60,8 @@ const SignInForm = () => {
               message: "E-mail não encontrado.",
             });
           }
+
+        // Erro de email e senha invalidos
           if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
             toast.error("E-mail ou senha inválidos.");
             form.setError("password", {
@@ -76,7 +80,7 @@ const SignInForm = () => {
   const handleSignInWithGoogle = async () => {
     await authClient.signIn.social({
       provider: "google",
-    }); 
+    });
   };
   return (
     <>
