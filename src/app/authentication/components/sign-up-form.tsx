@@ -32,7 +32,7 @@ const formSchema = z
     email: z.email("E-mail inválido."),
     password: z.string("Senha inválida.").min(8, "Senha inválida."),
     passwordConfirmation: z.string("Senha inválida.").min(8, "Senha inválida."),
-  }) 
+  })
   .refine(
     (data) => {
       return data.password === data.passwordConfirmation;
@@ -66,17 +66,14 @@ const SignUpForm = () => {
         onSuccess: () => {
           router.push("/");
         },
-        onError: (context) => {
-          const code = context?.error?.code;
-          const message =
-            context?.error?.message || "Ocorreu um erro ao criar a conta.";
-          if (code === "USER_ALREADY_EXISTS") {
+        onError: (error) => {
+          if (error.error.code === "USER_ALREADY_EXISTS") {
             toast.error("E-mail já cadastrado.");
             return form.setError("email", {
               message: "E-mail já cadastrado.",
             });
           }
-          toast.error(message);
+          toast.error(error.error.message);
         },
       },
     });
