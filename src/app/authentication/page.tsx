@@ -1,72 +1,29 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const Authentication = () => {
+import { Header } from "@/components/common/header";
+import SignInForm from "./components/sign-in-form";
+import SignUpForm from "./components/sign-up-form";
+
+const Authentication = async () => {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6 p-5">
-      <Tabs defaultValue="sign-in">
-        <TabsList>
-          <TabsTrigger value="sign-in">Entrar</TabsTrigger>
-          <TabsTrigger value="sign-up">Ciar Conta</TabsTrigger>
-        </TabsList>
-        <TabsContent value="sign-in">
-          <Card>
-            <CardHeader>
-              <CardTitle>Entrar</CardTitle>
-              <CardDescription>Faça login para continuar</CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="password">Senha</Label>
-                <Input id="password" defaultValue="@peduarte" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Entrar</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        <TabsContent value="sign-in">
-          <Card>
-            <CardHeader>
-              <CardTitle>Criar conta</CardTitle>
-              <CardDescription>Crie uma conta para continuar</CardDescription>
-            </CardHeader>
-            <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="nome">Nome</Label>
-                <Input id="nome" placeholder="Digite seu nome" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" placeholder="Digite seu email" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="email">Senha</Label>
-                <Input id="email" placeholder="Digite sua senha" />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button>Criar conta</Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
-    </div>
+    <>
+      <Header />
+
+      <div className="flex w-full flex-col gap-6 p-5">
+        <Tabs defaultValue="sign-in">
+          <TabsList>
+            <TabsTrigger value="sign-in">Entrar</TabsTrigger>
+            <TabsTrigger value="sign-up">Criar conta</TabsTrigger>
+          </TabsList>
+          <TabsContent value="sign-in" className="w-full">
+            <SignInForm />
+          </TabsContent>
+          <TabsContent value="sign-up" className="w-full">
+            <SignUpForm />
+          </TabsContent>
+        </Tabs>
+      </div>
+    </>
   );
 };
 
