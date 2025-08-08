@@ -16,14 +16,14 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 
+//logo do header
 export const Header = () => {
   const { data: session } = authClient.useSession();
   return (
     <header className="flex items-center justify-between p-5">
       <Link href="/">
-        <Image src="/logo.svg" alt="BEWEAR" width={100} height={26.14} />
+        <Image src="/logo1.svg" alt="BEWEAR" width={100} height={26.14} />
       </Link>
-
       <div className="flex items-center">
         <Sheet>
           <SheetTrigger asChild>
