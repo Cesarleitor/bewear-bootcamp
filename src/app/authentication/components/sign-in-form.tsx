@@ -80,7 +80,9 @@ const SignInForm = () => {
   const handleSignInWithGoogle = async () => {
     await authClient.signIn.social({
       provider: "google",
-    });
+      
+      }
+    );
   };
   return (
     <>
